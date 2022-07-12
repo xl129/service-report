@@ -19,10 +19,10 @@ return [
             'service_ephemeral_name' => env('SERVICE_REPORT_NACOS_SERVICE_EPHEMERAL_NAME', 'service_ephemeral_list'),
             // 临时服务列表
             'client'                 => [
-                'host'     => '127.0.0.1',
-                'port'     => 8848,
-                'username' => null,
-                'password' => null,
+                'host'     => env('NACOS_HOST', '127.0.0.1'),
+                'port'     => env('NACOS_PORT', 8848),
+                'username' => env('NACOS_USERNAME', 'nacos'),
+                'password' => env('NACOS_PASSWORD', 'nacos'),
                 'guzzle'   => [
                     'config' => null,
                 ],
