@@ -17,7 +17,7 @@ class NacosClientFactory
      */
     public function __invoke(ContainerInterface $container)
     {
-        $config = $container->get(ConfigInterface::class)->get('service_report.drivers.nacos', []);
+        $config = $container->get(ConfigInterface::class)->get('service_report.drivers.nacos.client', []);
         if (empty($config)) {
             return $container->get(Application::class);
         }

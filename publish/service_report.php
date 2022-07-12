@@ -14,10 +14,10 @@ return [
             'interval'               => 5,
             'namespace_id'           => env('SERVICE_REPORT_NACOS_NAMESPACE', 'service-report'),
             'group_name'             => env('SERVICE_REPORT_NACOS_GROUP', 'default'),
-            'service_name'           => env('SERVICE_REPORT_NACOS_SERVICE_NAME', 'service_list'),
             // 服务名称
-            'service_ephemeral_name' => env('SERVICE_REPORT_NACOS_SERVICE_EPHEMERAL_NAME', 'service_ephemeral_list'),
+            'service_name'           => env('SERVICE_REPORT_NACOS_SERVICE_NAME', 'service_list'),
             // 临时服务列表
+            'service_ephemeral_name' => env('SERVICE_REPORT_NACOS_SERVICE_EPHEMERAL_NAME', 'service_ephemeral_list'),
             'client'                 => [
                 'host'     => env('NACOS_HOST', '127.0.0.1'),
                 'port'     => env('NACOS_PORT', 8848),
