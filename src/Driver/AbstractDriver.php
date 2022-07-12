@@ -11,13 +11,10 @@ use Hyperf\Utils\Coroutine;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
 use YuanxinHealthy\ServiceReport\Entity\ServiceEntity;
-use Swoole\Server;
 use Throwable;
 
 abstract class AbstractDriver implements DriverInterface
 {
-    protected Server $server;
-
     protected ContainerInterface $container;
 
     protected StdoutLoggerInterface $logger;
@@ -35,11 +32,6 @@ abstract class AbstractDriver implements DriverInterface
         $this->container = $container;
         $this->logger = $this->container->get(StdoutLoggerInterface::class);
         $this->config = $this->container->get(ConfigInterface::class);
-    }
-
-    public function bindServer(Server $server)
-    {
-        $this->server = $server;
     }
 
     public function creatReportLoop()

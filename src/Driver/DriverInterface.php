@@ -3,18 +3,9 @@
 namespace YuanxinHealthy\ServiceReport\Driver;
 
 use YuanxinHealthy\ServiceReport\Entity\ServiceEntity;
-use Swoole\Server;
 
 interface DriverInterface
 {
-    /**
-     * 绑定server
-     * @param Server $server
-     * @author xionglin
-     */
-    public function bindServer(Server $server);
-
-
     /**
      * 循环
      * @author xionglin

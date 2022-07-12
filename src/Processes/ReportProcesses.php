@@ -33,7 +33,6 @@ class ReportProcesses extends AbstractProcess
      */
     protected DriverFactory $driverFactory;
 
-
     /**
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
@@ -68,7 +67,7 @@ class ReportProcesses extends AbstractProcess
             return;
         }
 
-        $instance = $this->driverFactory->create($driver, $this->server);
+        $instance = $this->driverFactory->create($driver);
 
         if (is_null($instance)) {
             return;

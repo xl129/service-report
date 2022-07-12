@@ -3,7 +3,6 @@
 namespace YuanxinHealthy\ServiceReport\Driver;
 
 use Hyperf\Contract\ConfigInterface;
-use Swoole\Server;
 
 class DriverFactory
 {
@@ -21,11 +20,10 @@ class DriverFactory
      * 创建驱动
      *
      * @param string $driver
-     * @param Server $server
      * @return DriverInterface|null
      * @author xionglin
      */
-    public function create(string $driver, Server $server): ?DriverInterface
+    public function create(string $driver): ?DriverInterface
     {
         $config = $this->config->get('service_report.drivers.' . $driver, []);
         if (empty($config['driver'])) {
@@ -35,11 +33,6 @@ class DriverFactory
         $class = $config['driver'];
         /** @var DriverInterface $instance */
         $instance = make($class);
-        $instance->bindServer($server);
-
-        /** @var DriverInterface $instance */
-        $instance = make($class, $config);
-        $instance->bindServer($server);
 
         return $instance;
     }
