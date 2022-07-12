@@ -1,0 +1,30 @@
+{
+    "name": "yuanxinhealthy/service-report",
+    "description": "自动上报",
+    "type": "library",
+    "keywords": [
+        "php",
+        "swoole",
+        "hyperf"
+    ],
+    "autoload": {
+        "psr-4": {
+            "YuanxinHealthy\\ServiceReport\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "xionglin",
+            "email": "xionglin2@yuanxinjituan.com"
+        }
+    ],
+    "require": {
+        "hyperf/process": "^2.2",
+        "hyperf/nacos": "^2.2"
+    },
+    "extra": {
+        "hyperf": {
+            "config": "YuanxinHealthy\\ServiceReport\\ConfigProvider"
+        }
+    }
+}
