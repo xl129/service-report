@@ -19,8 +19,8 @@
         }
     ],
     "require": {
-        "hyperf/process": "^2.2",
-        "hyperf/nacos": "^2.2"
+        "hyperf/nacos": "~2.2.0",
+        "hyperf/process": "~2.2.0"
     },
     "extra": {
         "hyperf": {
