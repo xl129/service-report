@@ -19,7 +19,9 @@ class ServiceEntity
 
     public string $appEnv = '';
 
-    public string $createAt = '';
+    public string $createdAt = '';
+
+    public string $url = '';
 
     /**
      * @throws ContainerExceptionInterface
@@ -36,10 +38,11 @@ class ServiceEntity
         $this->appEnv = strval($config->get('app_env'));
         $arr = explode(':', $config->get('server.settings.admin_server', ''));
         $this->port = intval(end($arr));
-        $this->createAt = date('Y-m-d H:i:s');
+        $this->createdAt = date('Y-m-d H:i:s');
 
         try {
             $this->host = Network::ip();
+            $this->url = sprintf('http://%s:%s', $this->host, $this->port);
         } catch (Throwable $e) {
             unset($e);
         }
@@ -86,12 +89,22 @@ class ServiceEntity
     }
 
     /**
-     * @param string $createAt
+     * @param string $createdAt
      * @return ServiceEntity
      */
-    public function setCreateAt(string $createAt): self
+    public function setCreatedAt(string $createdAt): self
     {
-        $this->createAt = $createAt;
+        $this->createdAt = $createdAt;
+        return $this;
+    }
+
+    /**
+     * @param string $url
+     * @return ServiceEntity
+     */
+    public function setUrl(string $url): self
+    {
+        $this->url = $url;
         return $this;
     }
 
@@ -102,11 +115,12 @@ class ServiceEntity
     public function toArray(): array
     {
         return [
-            'host'         => $this->host,
-            'port'         => $this->port,
-            'create_at'    => $this->createAt,
-            'app_name'     => $this->appName,
-            'app_env'      => $this->appEnv,
+            'host'       => $this->host,
+            'port'       => $this->port,
+            'created_at' => $this->createdAt,
+            'app_name'   => $this->appName,
+            'app_env'    => $this->appEnv,
+            'url'        => $this->url,
         ];
     }
 
@@ -117,10 +131,5 @@ class ServiceEntity
     public function toJson(): string
     {
         return json_encode($this->toArray(), JSON_UNESCAPED_UNICODE);
-    }
-
-    public function getName(): string
-    {
-        return sprintf("%s[%s]", $this->appName, $this->appEnv);
     }
 }
