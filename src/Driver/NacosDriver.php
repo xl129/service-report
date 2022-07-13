@@ -250,11 +250,10 @@ class NacosDriver extends AbstractDriver
     }
 
     /**
-     * @param bool $isForceArr true 返回 array[], false 返回 ServiceEntity[]
-     * @return array[]|ServiceEntity[]
+     * @return ServiceEntity[]
      * @author xionglin
      */
-    public function getList(bool $isForceArr = false): array
+    public function getList(): array
     {
         try {
             $response = $this->client->instance->list($this->serverEphemeralName, [
@@ -279,15 +278,13 @@ class NacosDriver extends AbstractDriver
                     continue;
                 }
 
-                $entity = (new ServiceEntity(null))
+                $list[] = (new ServiceEntity(null))
                     ->setAppName($host['metadata']['app_name'] ?? '')
                     ->setAppEnv($host['metadata']['app_env'] ?? '')
                     ->setCreatedAt($host['metadata']['created_at'] ?? '')
                     ->setHost($host['metadata']['host'])
                     ->setPort(intval($host['metadata']['port']))
                     ->setUrl($host['metadata']['url'] ?? '');
-
-                $list[] = $isForceArr ? $entity->toArray() : $entity;
             }
 
             return $list;
