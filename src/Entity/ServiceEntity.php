@@ -19,6 +19,8 @@ class ServiceEntity
 
     public string $appEnv = '';
 
+    public string $createAt = '';
+
     /**
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
@@ -34,6 +36,7 @@ class ServiceEntity
         $this->appEnv = strval($config->get('app_env'));
         $arr = explode(':', $config->get('server.settings.admin_server', ''));
         $this->port = intval(end($arr));
+        $this->createAt = date('Y-m-d H:i:s');
 
         try {
             $this->host = Network::ip();
@@ -83,16 +86,27 @@ class ServiceEntity
     }
 
     /**
+     * @param string $createAt
+     * @return ServiceEntity
+     */
+    public function setCreateAt(string $createAt): self
+    {
+        $this->createAt = $createAt;
+        return $this;
+    }
+
+    /**
      * @return array
      * @author xionglin
      */
     public function toArray(): array
     {
         return [
-            'host'    => $this->host,
-            'port'    => $this->port,
-            'appName' => $this->appName,
-            'appEnv'  => $this->appEnv,
+            'host'         => $this->host,
+            'port'         => $this->port,
+            'create_at'    => $this->createAt,
+            'app_name'     => $this->appName,
+            'app_env'      => $this->appEnv,
         ];
     }
 
@@ -107,6 +121,6 @@ class ServiceEntity
 
     public function getName(): string
     {
-        return sprintf("%s:%s", $this->appName, $this->appEnv);
+        return sprintf("%s[%s]", $this->appName, $this->appEnv);
     }
 }

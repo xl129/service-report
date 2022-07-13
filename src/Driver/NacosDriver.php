@@ -279,8 +279,9 @@ class NacosDriver extends AbstractDriver
                 }
 
                 $entity = (new ServiceEntity(null))
-                    ->setAppName($host['metadata']['appName'] ?? '')
-                    ->setAppEnv($host['metadata']['appEnv'] ?? '')
+                    ->setAppName($host['metadata']['app_name'] ?? '')
+                    ->setAppEnv($host['metadata']['app_env'] ?? '')
+                    ->setCreateAt($host['metadata']['create_at'] ?? '')
                     ->setHost($host['metadata']['host'])
                     ->setPort(intval($host['metadata']['port']));
 
