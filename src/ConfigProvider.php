@@ -36,12 +36,12 @@ class ConfigProvider
                     'destination' => BASE_PATH . '/config/autoload/service_report.php',
                 ],
             ],
-            'service_report' => require_once __DIR__ . '/../publish/service_report.php',
-            'server'       => [
-                'settings' => [
-                    'admin_server' => '0.0.0.0:9502',
-                ],
-            ],
+//            'service_report' => require_once __DIR__ . '/../publish/service_report.php',
+//            'server'       => [
+//                'settings' => [
+//                    'admin_server' => '0.0.0.0:9502',
+//                ],
+//            ],
         ];
     }
 }
