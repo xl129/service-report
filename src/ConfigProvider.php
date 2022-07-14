@@ -36,6 +36,11 @@ class ConfigProvider
                     'destination' => BASE_PATH . '/config/autoload/service_report.php',
                 ],
             ],
+            'server'       => [
+                'settings' => [
+                    'admin_server' => '0.0.0.0:9502',
+                ],
+            ],
         ];
     }
 }
