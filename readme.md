@@ -9,7 +9,7 @@ php bin/hyperf.php vendor:publish yuanxinhealthy/service-report
 ```php
 'server'       => [
     'settings' => [
-        'admin_server' => '0.0.0.0:9502', // 新增
+        Constant::OPTION_ADMIN_SERVER => '0.0.0.0:9502', // 新增
     ],
 ],
 ```
